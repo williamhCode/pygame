@@ -919,6 +919,7 @@ pg_set_mode(PyObject *self, PyObject *arg, PyObject *kwds)
 
     {
         Uint32 sdl_flags = 0;
+
         SDL_DisplayMode display_mode;
 
         if (SDL_GetDesktopDisplayMode(display, &display_mode) != 0) {
@@ -1084,6 +1085,7 @@ pg_set_mode(PyObject *self, PyObject *arg, PyObject *kwds)
 
             if (!win) {
                 /*open window*/
+                sdl_flags |= SDL_WINDOW_ALLOW_HIGHDPI;
                 win = SDL_CreateWindow(title, x, y, w_1, h_1, sdl_flags);
                 if (!win)
                     return RAISE(pgExc_SDLError, SDL_GetError());
